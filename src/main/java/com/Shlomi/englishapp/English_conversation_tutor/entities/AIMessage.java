@@ -1,6 +1,6 @@
-package com.Shlomi.englishapp.English_conversation_tutor.conversation;
+package com.Shlomi.englishapp.English_conversation_tutor.entities;
 
-public class AIMessage implements Message{
+public class AIMessage implements MessageInterface{
     private String massage;
     private static Boolean isFirsMassage = true;
 

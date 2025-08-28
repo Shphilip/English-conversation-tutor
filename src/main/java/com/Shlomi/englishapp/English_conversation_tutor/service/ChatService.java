@@ -1,7 +1,8 @@
 package com.Shlomi.englishapp.English_conversation_tutor.service;
 import org.springframework.stereotype.Service;
-import com.Shlomi.englishapp.English_conversation_tutor.conversation.UserMessage;
+
 import com.Shlomi.englishapp.English_conversation_tutor.domain.AIWrapper;
+import com.Shlomi.englishapp.English_conversation_tutor.entities.UserMessage;
 
 
 @Service
