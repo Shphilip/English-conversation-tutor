@@ -14,7 +14,7 @@ public class ChatService {
     }
     
     public String processMessage(UserMessage request) {
-        return this.aiWrapper.getResponse(request).getMassage();
+        return this.aiWrapper.getResponse(request).getMessage();
     }
 }
 

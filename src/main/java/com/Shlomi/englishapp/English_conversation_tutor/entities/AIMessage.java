@@ -5,12 +5,12 @@ public class AIMessage implements MessageInterface{
     private static Boolean isFirsMassage = true;
 
     @Override
-    public String getMassage() {
+    public String getMessage() {
         return this.massage;
     }
 
     @Override
-    public void setMassage(String massage) {
+    public void setMessage(String massage) {
         this.massage = massage;
         isFirsMassage = false;
     }
