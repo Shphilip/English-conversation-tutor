@@ -1,10 +1,13 @@
 package com.Shlomi.englishapp.English_conversation_tutor.controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 // import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.Shlomi.englishapp.English_conversation_tutor.entities.MessageInterface;
+// import com.Shlomi.englishapp.English_conversation_tutor.entities.MessageInterface;
+import com.Shlomi.englishapp.English_conversation_tutor.entities.UserMessage;
 // import com.Shlomi.englishapp.English_conversation_tutor.entities.UserMessage;
 // import com.Shlomi.englishapp.English_conversation_tutor.service.ChatService;
 import com.Shlomi.englishapp.English_conversation_tutor.service.ChatServiceInterface;
@@ -18,11 +21,13 @@ public class Controller implements ControllerInterface{
     public Controller(ChatServiceInterface chatService){
         this.chatService = chatService;
     }
-
+    
     @PostMapping
     @Override
-    public MessageInterface handleRequest(MessageInterface massage) {
-        return chatService.processMessage(massage);
+    public MessageInterface handleRequest(@RequestBody UserMessage message){
+        MessageInterface response = chatService.processMessage(message);
+        System.out.println("Controller: Received message: " + response.getMessage());
+        return response;
     }
 
 }

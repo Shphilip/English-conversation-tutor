@@ -30,7 +30,7 @@ function handleSpeechResult(event) {
         if (event.results[i].isFinal) { //User speech is final
             final_transcript += event.results[i][0].transcript;
             addTextToUserScreen(final_transcript);
-            console.log("Final massage: ", final_transcript);
+            // console.log("Final massage: ", final_transcript);
             postRequest(final_transcript);
         } else { //Show live updates
             interim_transcript += event.results[i][0].transcript;
@@ -47,8 +47,7 @@ function postRequest(userText){
     })
     .then(res => res.json())
     .then(data => {
-        addTextToChatBotScreen(data);
-    });
+        addTextToChatBotScreen(data.message);    });
     // .catch(error => {
     //     console.error('Error:', error);
     // });
