@@ -7,113 +7,116 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-        <div class="container">
+   <div class="container">
         <!-- Header Section -->
         <div class="header">
             <h1>🎯 English Conversation Practice</h1>
             <p>Practice speaking English with AI-powered conversation partner</p>
         </div>
 
-        <!-- Avatar Section -->
-        <div class="avatar-section">
-            <div class="avatar-container">
-                <div class="avatar" id="teacherAvatar">
-                    <!-- Face -->
-                    <div class="avatar-head">
-                        <div class="avatar-hair"></div>
-                        <div class="avatar-face">
-                            <div class="avatar-eyes">
-                                <div class="eye left-eye">
-                                    <div class="pupil"></div>
+        <div class="main-content">
+            <!-- Avatar Section -->
+            <div class="avatar-section">
+                <div class="avatar-container">
+                    <div class="avatar" id="teacherAvatar">
+                        <!-- Face -->
+                        <div class="avatar-head">
+                            <div class="avatar-hair"></div>
+                            <div class="avatar-face">
+                                <div class="avatar-eyes">
+                                    <div class="eye left-eye">
+                                        <div class="pupil"></div>
+                                    </div>
+                                    <div class="eye right-eye">
+                                        <div class="pupil"></div>
+                                    </div>
                                 </div>
-                                <div class="eye right-eye">
-                                    <div class="pupil"></div>
+                                <div class="avatar-nose"></div>
+                                <div class="avatar-mouth" id="avatarMouth">
+                                    <div class="mouth-curve"></div>
                                 </div>
                             </div>
-                            <div class="avatar-nose"></div>
-                            <div class="avatar-mouth" id="avatarMouth">
-                                <div class="mouth-curve"></div>
+                            <div class="avatar-ears">
+                                <div class="ear left-ear"></div>
+                                <div class="ear right-ear"></div>
                             </div>
                         </div>
-                        <div class="avatar-ears">
-                            <div class="ear left-ear"></div>
-                            <div class="ear right-ear"></div>
+                        <!-- Body -->
+                        <div class="avatar-body">
+                            <div class="avatar-neck"></div>
+                            <div class="avatar-shirt">
+                                <div class="shirt-collar"></div>
+                                <div class="shirt-tie"></div>
+                            </div>
                         </div>
                     </div>
-                    <!-- Body -->
-                    <div class="avatar-body">
-                        <div class="avatar-neck"></div>
-                        <div class="avatar-shirt">
-                            <div class="shirt-collar"></div>
-                            <div class="shirt-tie"></div>
+                    
+                    <div class="avatar-info">
+                        <h3 id="teacherName">Ms. Sarah - English Teacher</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conversation Text Boxes -->
+            <div class="conversation-boxes">
+                <!-- User Text Box -->
+                <div class="text-box user-box">
+                    <div class="box-header">
+                        <div class="user-icon">👤</div>
+                        <h3>Your Speech</h3>
+                    </div>
+                    <div class="box-content">
+                        <div id="userTextDisplay" class="text-display">
+                            Click the microphone and start speaking...
+                        </div>
+                        <div id="currentSpeech" class="current-speech" style="display: none;">
+                            <strong>Speaking:</strong> <span id="speechText"></span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Avatar Text Box -->
+                <div class="text-box avatar-box">
+                    <div class="box-header">
+                        <div class="teacher-icon">👩‍🏫</div>
+                        <h3>Ms. Sarah's Response</h3>
+                    </div>
+                    <div class="box-content">
+                        <div id="avatarTextDisplay" class="text-display">
+                            Hi! I'm ready to help you practice English. Click the microphone to start our conversation!
+                        </div>
+                        <div id="avatarStatus" class="response-status ready">
+                            Ready to chat
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls">
+                <button class="mic-button" id="micButton" title="Click to start/stop listening">
+                    🎤
+                </button>
+                
+                <div class="status ready" id="statusDisplay">
+                    Ready to start conversation - Click the microphone!
                 </div>
                 
-                <div class="avatar-info">
-                    <h3 id="teacherName">Ms. Sarah - English Teacher</h3>
+                <div class="silence-timer" id="silenceTimer" style="display: none;">
+                    Silence detected - sending message in <span id="countdown">3</span> seconds...
                 </div>
-            </div>
-        </div>
-
-        <!-- Conversation Text Boxes -->
-        <div class="conversation-boxes">
-            <!-- User Text Box -->
-            <div class="text-box user-box">
-                <div class="box-header">
-                    <div class="user-icon">👤</div>
-                    <h3>Your Speech</h3>
+                
+                <div class="controls-info">
+                    <p><strong>How it works:</strong></p>
+                    <p>• Click microphone to start listening</p>
+                    <p>• Speak naturally - your words appear in real-time</p>
+                    <p>• After 3 seconds of silence, your message is sent automatically</p>
+                    <p>• AI teacher responds with helpful feedback and questions</p>
                 </div>
-                <div class="box-content">
-                    <div id="userTextDisplay" class="text-display">
-                        Click the microphone and start speaking...
-                    </div>
-                    <div id="currentSpeech" class="current-speech" style="display: none;">
-                        <strong>Speaking:</strong> <span id="speechText"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Avatar Text Box -->
-            <div class="text-box avatar-box">
-                <div class="box-header">
-                    <div class="teacher-icon">👩‍🏫</div>
-                    <h3>Ms. Sarah's Response</h3>
-                </div>
-                <div class="box-content">
-                    <div id="avatarTextDisplay" class="text-display">
-                        Hi! I'm ready to help you practice English. Click the microphone to start our conversation!
-                    </div>
-                    <div id="avatarStatus" class="response-status">
-                        Ready to chat
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Controls Section -->
-        <div class="controls">
-            <button class="mic-button" id="micButton" title="Click to start/stop listening">
-                🎤
-            </button>
-            
-            <div class="status ready" id="statusDisplay">
-                Ready to start conversation - Click the microphone!
-            </div>
-            
-            <div class="silence-timer" id="silenceTimer" style="display: none;">
-                Silence detected - sending message in <span id="countdown">3</span> seconds...
-            </div>
-            
-            <div class="controls-info">
-                <p><strong>How it works:</strong></p>
-                <p>• Click microphone to start listening</p>
-                <p>• Speak naturally - your words appear in real-time</p>
-                <p>• After 3 seconds of silence, your message is sent automatically</p>
-                <p>• AI teacher responds with helpful feedback and questions</p>
             </div>
         </div>
     </div>
+
 
     <script src="script.js"></script>
     <script src="app.js"></script>

@@ -1,755 +1,615 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        height: 100vh;
+        overflow: hidden;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
+    .container {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 0 40px rgba(0,0,0,0.1);
+    }
 
-        .header {
-            background: linear-gradient(135deg, #4CAF50, #45a049);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
+    .header {
+        background: linear-gradient(135deg, #4CAF50, #45a049);
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        flex-shrink: 0;
+    }
 
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+    .header h1 {
+        font-size: 1.8em;
+        margin-bottom: 5px;
+    }
 
-        .header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
+    .header p {
+        font-size: 1em;
+        opacity: 0.9;
+    }
 
-        /* Conversation Text Boxes */
+    .main-content {
+        flex: 1;
+        display: grid;
+        grid-template-columns: 280px 1fr 280px;
+        gap: 20px;
+        padding: 20px;
+        min-height: 0;
+    }
+
+    /* Avatar Section */
+    .avatar-section {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #dee2e6;
+    }
+
+    .avatar-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .avatar {
+        width: 120px;
+        height: 160px;
+        margin: 0 auto;
+        position: relative;
+        animation: gentle-float 3s ease-in-out infinite;
+    }
+
+    @keyframes gentle-float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-4px); }
+    }
+
+    /* Head */
+    .avatar-head {
+        width: 80px;
+        height: 80px;
+        position: relative;
+        margin: 0 auto;
+    }
+
+    .avatar-hair {
+        width: 85px;
+        height: 45px;
+        background: linear-gradient(135deg, #8B4513, #A0522D);
+        border-radius: 45px 45px 35px 35px;
+        position: absolute;
+        top: -5px;
+        left: -2.5px;
+        z-index: 1;
+    }
+
+    .avatar-face {
+        width: 65px;
+        height: 65px;
+        background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
+        border-radius: 50%;
+        position: relative;
+        top: 7px;
+        left: 7.5px;
+        z-index: 2;
+    }
+
+    .avatar-eyes {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        top: 20px;
+        left: 15px;
+        width: 35px;
+    }
+
+    .eye {
+        width: 12px;
+        height: 12px;
+        background: white;
+        border-radius: 50%;
+        position: relative;
+        animation: blink 4s infinite;
+    }
+
+    .pupil {
+        width: 8px;
+        height: 8px;
+        background: #333;
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+    }
+
+    @keyframes blink {
+        0%, 90%, 100% { transform: scaleY(1); }
+        95% { transform: scaleY(0.1); }
+    }
+
+    .avatar-nose {
+        width: 5px;
+        height: 5px;
+        background: #E8A298;
+        border-radius: 50%;
+        position: absolute;
+        top: 35px;
+        left: 30px;
+    }
+
+    .avatar-mouth {
+        position: absolute;
+        top: 45px;
+        left: 22px;
+        width: 20px;
+        height: 10px;
+    }
+
+    .mouth-curve {
+        width: 18px;
+        height: 8px;
+        border: 2px solid #D4739B;
+        border-top: none;
+        border-radius: 0 0 18px 18px;
+    }
+
+    .avatar-mouth.talking .mouth-curve {
+        animation: mouth-talking 0.3s ease-in-out infinite;
+    }
+
+    @keyframes mouth-talking {
+        0%, 100% { 
+            border-radius: 0 0 18px 18px;
+            transform: scaleY(1) scaleX(1);
+        }
+        50% { 
+            border-radius: 50%;
+            transform: scaleY(0.8) scaleX(1.2);
+        }
+    }
+
+    .avatar-ears {
+        position: absolute;
+        top: 25px;
+        width: 80px;
+    }
+
+    .ear {
+        width: 12px;
+        height: 18px;
+        background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
+        border-radius: 50%;
+        position: absolute;
+    }
+
+    .left-ear {
+        left: -5px;
+        transform: rotate(-20deg);
+    }
+
+    .right-ear {
+        right: -5px;
+        transform: rotate(20deg);
+    }
+
+    .avatar-body {
+        width: 90px;
+        height: 80px;
+        margin: 0 auto;
+        position: relative;
+        top: -5px;
+    }
+
+    .avatar-neck {
+        width: 20px;
+        height: 12px;
+        background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
+        margin: 0 auto;
+        border-radius: 10px;
+    }
+
+    .avatar-shirt {
+        width: 80px;
+        height: 68px;
+        background: linear-gradient(135deg, #4A90E2, #357ABD);
+        margin: 0 auto;
+        border-radius: 10px 10px 15px 15px;
+        position: relative;
+        margin-top: 3px;
+    }
+
+    .shirt-collar {
+        width: 40px;
+        height: 15px;
+        background: white;
+        margin: 0 auto;
+        border-radius: 0 0 10px 10px;
+        position: relative;
+        top: 0px;
+    }
+
+    .shirt-tie {
+        width: 10px;
+        height: 25px;
+        background: linear-gradient(135deg, #8B0000, #A52A2A);
+        margin: 0 auto;
+        position: relative;
+        top: -3px;
+        border-radius: 0 0 5px 5px;
+    }
+
+    .avatar-info h3 {
+        color: #2c3e50;
+        font-size: 1em;
+        margin-top: 10px;
+    }
+
+    /* Conversation Text Boxes */
+    .conversation-boxes {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        min-height: 0;
+    }
+
+    .text-box {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .text-box:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+
+    .user-box {
+        border-top: 4px solid #74b9ff;
+    }
+
+    .avatar-box {
+        border-top: 4px solid #a29bfe;
+    }
+
+    .box-header {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-bottom: 1px solid #dee2e6;
+        flex-shrink: 0;
+    }
+
+    .user-icon, .teacher-icon {
+        font-size: 20px;
+        margin-right: 8px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .box-header h3 {
+        margin: 0;
+        color: #2c3e50;
+        font-size: 1em;
+    }
+
+    .box-content {
+        padding: 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+
+    .text-display {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #2c3e50;
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        border: 2px dashed #dee2e6;
+        flex: 1;
+        transition: all 0.3s ease;
+        overflow-y: auto;
+        min-height: 80px;
+    }
+
+    .user-box .text-display {
+        border-color: #74b9ff;
+        background: linear-gradient(135deg, #f8fbff, #e8f4fd);
+    }
+
+    .avatar-box .text-display {
+        border-color: #a29bfe;
+        background: linear-gradient(135deg, #f9f8ff, #f0eeff);
+    }
+
+    .current-speech {
+        margin-top: 10px;
+        padding: 8px 12px;
+        background: #fff3cd;
+        border: 2px solid #ffc107;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #856404;
+        animation: pulse-speech 1s ease-in-out infinite alternate;
+        flex-shrink: 0;
+    }
+
+    @keyframes pulse-speech {
+        from { opacity: 0.8; }
+        to { opacity: 1; }
+    }
+
+    .response-status {
+        margin-top: 10px;
+        padding: 8px 12px;
+        border-radius: 15px;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .response-status.ready {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .response-status.listening {
+        background: #fff3cd;
+        color: #856404;
+        animation: listening-pulse 1s ease-in-out infinite;
+    }
+
+    .response-status.thinking {
+        background: #cce7ff;
+        color: #004085;
+    }
+
+    .response-status.speaking {
+        background: #f4ccff;
+        color: #6f0080;
+    }
+
+    @keyframes listening-pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+    }
+
+    /* Controls Section */
+    .controls {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid #dee2e6;
+    }
+
+    .mic-button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border: none;
+        background: linear-gradient(135deg, #e17055, #d63031);
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        margin-bottom: 15px;
+    }
+
+    .mic-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .mic-button.listening {
+        background: linear-gradient(135deg, #00b894, #00a085);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,184,148,0.4);
+        }
+        100% {
+            transform: scale(1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+    }
+
+    .status {
+        font-size: 14px;
+        font-weight: 600;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .status.ready {
+        background: #d4edda;
+        color: #155724;
+        border-left: 4px solid #28a745;
+    }
+
+    .status.listening {
+        background: #fff3cd;
+        color: #856404;
+        border-left: 4px solid #ffc107;
+    }
+
+    .status.processing {
+        background: #cce7ff;
+        color: #004085;
+        border-left: 4px solid #007bff;
+    }
+
+    .status.error {
+        background: #f8d7da;
+        color: #721c24;
+        border-left: 4px solid #dc3545;
+    }
+
+    .silence-timer {
+        background: #e9ecef;
+        padding: 8px 15px;
+        border-radius: 20px;
+        margin: 10px 0;
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+    }
+
+    .silence-timer.active {
+        background: #fff3cd;
+        color: #856404;
+        animation: countdown 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes countdown {
+        from { opacity: 0.7; }
+        to { opacity: 1; }
+    }
+
+    .controls-info {
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .controls-info p {
+        margin: 2px 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+        .main-content {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto 1fr auto;
+            gap: 15px;
+            padding: 15px;
+        }
+        
+        .avatar-section {
+            order: 1;
+            padding: 15px;
+        }
+        
         .conversation-boxes {
+            order: 2;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            padding: 20px;
-            background: #f8f9fa;
-        }
-
-        .text-box {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .text-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-
-        .user-box {
-            border-top: 4px solid #74b9ff;
-        }
-
-        .avatar-box {
-            border-top: 4px solid #a29bfe;
-        }
-
-        .box-header {
-            display: flex;
-            align-items: center;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .user-icon, .teacher-icon {
-            font-size: 24px;
-            margin-right: 12px;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .box-header h3 {
-            margin: 0;
-            color: #2c3e50;
-            font-size: 1.2em;
-        }
-
-        .box-content {
-            padding: 20px;
-            min-height: 120px;
-        }
-
-        .text-display {
-            font-size: 16px;
-            line-height: 1.6;
-            color: #2c3e50;
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            border: 2px dashed #dee2e6;
-            min-height: 60px;
-            transition: all 0.3s ease;
-        }
-
-        .user-box .text-display {
-            border-color: #74b9ff;
-            background: linear-gradient(135deg, #f8fbff, #e8f4fd);
-        }
-
-        .avatar-box .text-display {
-            border-color: #a29bfe;
-            background: linear-gradient(135deg, #f9f8ff, #f0eeff);
-        }
-
-        .text-display.active {
-            border-style: solid;
-            animation: text-glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes text-glow {
-            from { box-shadow: 0 0 5px rgba(116, 185, 255, 0.3); }
-            to { box-shadow: 0 0 15px rgba(116, 185, 255, 0.6); }
-        }
-
-        .current-speech {
-            margin-top: 15px;
-            padding: 12px 15px;
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 8px;
-            font-size: 14px;
-            color: #856404;
-            animation: pulse-speech 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes pulse-speech {
-            from { opacity: 0.8; }
-            to { opacity: 1; }
-        }
-
-        .response-status {
-            margin-top: 15px;
-            padding: 10px 15px;
-            border-radius: 20px;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .response-status.ready {
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .response-status.listening {
-            background: #fff3cd;
-            color: #856404;
-            animation: listening-pulse 1s ease-in-out infinite;
-        }
-
-        .response-status.thinking {
-            background: #cce7ff;
-            color: #004085;
-            animation: thinking-dots 1.5s ease-in-out infinite;
-        }
-
-        .response-status.speaking {
-            background: #f4ccff;
-            color: #6f0080;
-            animation: speaking-wave 1s ease-in-out infinite;
-        }
-
-        @keyframes listening-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
-        }
-
-        @keyframes thinking-dots {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        @keyframes speaking-wave {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-2px); }
-            75% { transform: translateX(2px); }
-        }
-
-        /* Text Box Responsive */
-        @media (max-width: 768px) {
-            .conversation-boxes {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .box-content {
-                padding: 15px;
-                min-height: 100px;
-            }
-            
-            .text-display {
-                font-size: 14px;
-                padding: 12px;
-                min-height: 50px;
-            }
-        }
-
-        .controls {
-            padding: 30px;
-            text-align: center;
-            background: white;
-        }
-
-        .mic-button {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            border: none;
-            background: linear-gradient(135deg, #e17055, #d63031);
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            margin: 20px;
-        }
-
-        .mic-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-        }
-
-        .mic-button.listening {
-            background: linear-gradient(135deg, #00b894, #00a085);
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 12px 24px rgba(0,184,148,0.4);
-            }
-            100% {
-                transform: scale(1);
-                box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-            }
-        }
-
-        .status {
-            font-size: 1.1em;
-            font-weight: 600;
-            margin: 15px 0;
-            padding: 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .status.ready {
-            background: #d4edda;
-            color: #155724;
-            border-left: 5px solid #28a745;
-        }
-
-        .status.listening {
-            background: #fff3cd;
-            color: #856404;
-            border-left: 5px solid #ffc107;
-        }
-
-        .status.processing {
-            background: #cce7ff;
-            color: #004085;
-            border-left: 5px solid #007bff;
-        }
-
-        .status.error {
-            background: #f8d7da;
-            color: #721c24;
-            border-left: 5px solid #dc3545;
-        }
-
-        .silence-timer {
-            background: #e9ecef;
-            padding: 10px 20px;
-            border-radius: 25px;
-            margin: 15px 0;
-            font-size: 14px;
-            color: #6c757d;
-            text-align: center;
-        }
-
-        .silence-timer.active {
-            background: #fff3cd;
-            color: #856404;
-            animation: countdown 1s ease-in-out infinite alternate;
-        }
-
-        @keyframes countdown {
-            from { opacity: 0.7; }
-            to { opacity: 1; }
-        }
-
-        /* Avatar Styles */
-        .avatar-section {
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            padding: 30px;
-            text-align: center;
-            border-bottom: 2px solid #dee2e6;
-        }
-
-        .avatar-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        .avatar {
-            width: 200px;
-            height: 280px;
-            margin: 0 auto;
-            position: relative;
-            animation: gentle-float 3s ease-in-out infinite;
-        }
-
-        @keyframes gentle-float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
-
-        /* Head */
-        .avatar-head {
-            width: 120px;
-            height: 120px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .avatar-hair {
-            width: 130px;
-            height: 70px;
-            background: linear-gradient(135deg, #8B4513, #A0522D);
-            border-radius: 65px 65px 50px 50px;
-            position: absolute;
-            top: -10px;
-            left: -5px;
-            z-index: 1;
-        }
-
-        .avatar-face {
-            width: 100px;
-            height: 100px;
-            background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
-            border-radius: 50%;
-            position: relative;
-            top: 10px;
-            left: 10px;
-            z-index: 2;
-        }
-
-        /* Eyes */
-        .avatar-eyes {
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 30px;
-            left: 20px;
-            width: 60px;
-        }
-
-        .eye {
-            width: 20px;
-            height: 20px;
-            background: white;
-            border-radius: 50%;
-            position: relative;
-            animation: blink 4s infinite;
-        }
-
-        .pupil {
-            width: 12px;
-            height: 12px;
-            background: #333;
-            border-radius: 50%;
-            position: absolute;
-            top: 4px;
-            left: 4px;
-            animation: eye-movement 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes blink {
-            0%, 90%, 100% { transform: scaleY(1); }
-            95% { transform: scaleY(0.1); }
-        }
-
-        @keyframes eye-movement {
-            0% { transform: translateX(0px); }
-            25% { transform: translateX(2px); }
-            75% { transform: translateX(-2px); }
-            100% { transform: translateX(0px); }
-        }
-
-        /* Nose */
-        .avatar-nose {
-            width: 8px;
-            height: 8px;
-            background: #E8A298;
-            border-radius: 50%;
-            position: absolute;
-            top: 50px;
-            left: 46px;
-        }
-
-        /* Mouth */
-        .avatar-mouth {
-            position: absolute;
-            top: 65px;
-            left: 35px;
-            width: 30px;
-            height: 15px;
-        }
-
-        .mouth-curve {
-            width: 25px;
-            height: 12px;
-            border: 3px solid #D4739B;
-            border-top: none;
-            border-radius: 0 0 25px 25px;
-            animation: mouth-talk 2s ease-in-out infinite;
-        }
-
-        @keyframes mouth-talk {
-            0%, 100% { transform: scaleY(1); }
-            50% { transform: scaleY(1.3); }
-        }
-
-        .avatar-mouth.talking .mouth-curve {
-            animation: mouth-talking 0.3s ease-in-out infinite;
-        }
-
-        @keyframes mouth-talking {
-            0%, 100% { 
-                border-radius: 0 0 25px 25px;
-                transform: scaleY(1) scaleX(1);
-            }
-            25% { 
-                border-radius: 50%;
-                transform: scaleY(0.8) scaleX(1.2);
-            }
-            75% { 
-                border-radius: 0 0 15px 15px;
-                transform: scaleY(1.2) scaleX(0.9);
-            }
-        }
-
-        /* Ears */
-        .avatar-ears {
-            position: absolute;
-            top: 40px;
-            width: 120px;
-        }
-
-        .ear {
-            width: 20px;
-            height: 25px;
-            background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
-            border-radius: 50%;
-            position: absolute;
-        }
-
-        .left-ear {
-            left: -8px;
-            transform: rotate(-20deg);
-        }
-
-        .right-ear {
-            right: -8px;
-            transform: rotate(20deg);
-        }
-
-        /* Body */
-        .avatar-body {
-            width: 140px;
-            height: 160px;
-            margin: 0 auto;
-            position: relative;
-            top: -10px;
-        }
-
-        .avatar-neck {
-            width: 30px;
-            height: 20px;
-            background: linear-gradient(135deg, #FDBCB4, #F8A5A0);
-            margin: 0 auto;
-            border-radius: 15px;
-        }
-
-        .avatar-shirt {
-            width: 120px;
-            height: 140px;
-            background: linear-gradient(135deg, #4A90E2, #357ABD);
-            margin: 0 auto;
-            border-radius: 15px 15px 25px 25px;
-            position: relative;
-            margin-top: 5px;
-        }
-
-        .shirt-collar {
-            width: 60px;
-            height: 25px;
-            background: white;
-            margin: 0 auto;
-            border-radius: 0 0 15px 15px;
-            position: relative;
-            top: 0px;
-        }
-
-        .shirt-tie {
-            width: 15px;
-            height: 40px;
-            background: linear-gradient(135deg, #8B0000, #A52A2A);
-            margin: 0 auto;
-            position: relative;
-            top: -5px;
-            border-radius: 0 0 8px 8px;
-        }
-
-        /* Avatar Info */
-        .avatar-info {
-            margin-top: 20px;
-        }
-
-        .avatar-info h3 {
-            color: #2c3e50;
-            font-size: 1.4em;
-            margin-bottom: 10px;
-        }
-
-        .avatar-info p {
-            color: #6c757d;
-            font-size: 1em;
-            line-height: 1.4;
-        }
-
-        /* Speech Bubble */
-        .speech-bubble {
-            position: absolute;
-            background: white;
-            border: 3px solid #4A90E2;
-            border-radius: 20px;
-            padding: 15px 20px;
-            max-width: 250px;
-            left: 220px;
-            top: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            animation: bubble-appear 0.3s ease;
-            z-index: 10;
-        }
-
-        .bubble-content {
-            color: #2c3e50;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        .bubble-arrow {
-            position: absolute;
-            left: -15px;
-            top: 30px;
-            width: 0;
-            height: 0;
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-right: 15px solid white;
-        }
-
-        .bubble-arrow:before {
-            content: '';
-            position: absolute;
-            left: 3px;
-            top: -13px;
-            width: 0;
-            height: 0;
-            border-top: 13px solid transparent;
-            border-bottom: 13px solid transparent;
-            border-right: 18px solid #4A90E2;
-        }
-
-        @keyframes bubble-appear {
-            0% {
-                opacity: 0;
-                transform: scale(0.8) translateY(10px);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        /* Avatar States */
-        .avatar.listening {
-            animation: listening-pulse 1s ease-in-out infinite;
-        }
-
-        @keyframes listening-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        .avatar.thinking {
-            animation: thinking-sway 2s ease-in-out infinite;
-        }
-
-        @keyframes thinking-sway {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(2deg); }
-            75% { transform: rotate(-2deg); }
-        }
-
-        .controls-info {
-            margin-top: 20px;
-            color: #6c757d;
-            font-size: 14px;
-        }
-
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-top: 20px;
         }
-
-        .feature-item {
-            background: #f8f9fa;
+        
+        .controls {
+            order: 3;
             padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 2px solid #e9ecef;
         }
+        
+        .avatar {
+            width: 100px;
+            height: 130px;
+        }
+        
+        .avatar-head {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .avatar-face {
+            width: 55px;
+            height: 55px;
+        }
+        
+        .avatar-hair {
+            width: 75px;
+            height: 40px;
+        }
+    }
 
-        .feature-item .icon {
-            font-size: 24px;
-            margin-bottom: 8px;
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 1.5em;
         }
-
-        .welcome-message {
-            text-align: center;
-            color: #6c757d;
-            font-style: italic;
-            margin: 20px 0;
-            padding: 20px;
+        
+        .header p {
+            font-size: 0.9em;
         }
-
-        /* Responsive Design */
-        @media (max-width: 600px) {
-            .container {
-                margin: 10px;
-                border-radius: 15px;
-            }
-            
-            .header {
-                padding: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2em;
-            }
-            
-            .chat-container {
-                height: 300px;
-                padding: 15px;
-            }
-            
-            .avatar-section {
-                padding: 20px;
-            }
-            
-            .avatar {
-                width: 160px;
-                height: 220px;
-            }
-            
-            .avatar-head {
-                width: 100px;
-                height: 100px;
-            }
-            
-            .avatar-face {
-                width: 80px;
-                height: 80px;
-                left: 10px;
-            }
-            
-            .avatar-hair {
-                width: 110px;
-                height: 60px;
-                left: -5px;
-            }
-            
-            .avatar-body {
-                width: 120px;
-                height: 140px;
-            }
-            
-            .avatar-shirt {
-                width: 100px;
-                height: 120px;
-            }
-            
-            .speech-bubble {
-                position: relative;
-                left: 0;
-                top: 10px;
-                margin-top: 20px;
-                max-width: 200px;
-            }
-            
-            .bubble-arrow {
-                left: 50%;
-                top: -15px;
-                transform: translateX(-50%);
-                border-left: 10px solid transparent;
-                border-right: 10px solid transparent;
-                border-bottom: 15px solid white;
-                border-top: none;
-            }
-            
-            .bubble-arrow:before {
-                left: -13px;
-                top: 3px;
-                border-left: 13px solid transparent;
-                border-right: 13px solid transparent;
-                border-bottom: 18px solid #4A90E2;
-                border-top: none;
-            }
-            
-            .mic-button {
-                width: 70px;
-                height: 70px;
-                font-size: 25px;
-            }
+        
+        .conversation-boxes {
+            grid-template-columns: 1fr;
+            gap: 10px;
         }
+        
+        .main-content {
+            padding: 10px;
+            gap: 10px;
+        }
+        
+        .avatar-section {
+            padding: 10px;
+        }
+        
+        .avatar {
+            width: 80px;
+            height: 110px;
+        }
+        
+        .controls {
+            padding: 10px;
+        }
+        
+        .mic-button {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+        
+        .controls-info {
+            font-size: 11px;
+        }
+    }
