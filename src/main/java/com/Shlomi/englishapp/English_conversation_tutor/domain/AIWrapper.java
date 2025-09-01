@@ -16,9 +16,10 @@ public class AiWrapper implements WrapperInterface {
     @Override
     // Get response from AI model, return MessageInterface that holds the model response
     public MessageInterface getResponse(MessageInterface userMessage) {
-        JsonObject geminiRequest = buildModelRequest(userMessage); //Create JSON object by Gemini template
-        JsonObject geminiResponse = this.aiModel.sendToModel(geminiRequest); //Send request to AI model and get response
-        MessageInterface response = parseGeminiResponse(geminiResponse); //Parser the model response to MessageInterface
+        JsonObject aiModelRequest = buildModelRequest(userMessage); //Create JSON object by Gemini template
+        System.out.println("Gemini Request: " + aiModelRequest);
+        JsonObject aiModelResponse = this.aiModel.sendToModel(aiModelRequest); //Send request to AI model and get response
+        MessageInterface response = parseGeminiResponse(aiModelResponse); //Parser the model response to MessageInterface
         return response;
     }
 
@@ -50,15 +51,15 @@ public class AiWrapper implements WrapperInterface {
 
 
     //Convert the AI model response to MessageInterface type
-    private MessageInterface parseGeminiResponse(JsonObject geminiResponse) {
-        String text = geminiResponse
+    private MessageInterface parseGeminiResponse(JsonObject aiNodelResponse) {
+        String text = aiNodelResponse
             .getAsJsonArray("candidates")
             .get(0).getAsJsonObject()
             .getAsJsonObject("content")
             .getAsJsonArray("parts")
             .get(0).getAsJsonObject()
             .get("text").getAsString();
-
+ 
         MessageInterface aiMessage = new AIMessage();
         aiMessage.setMessage(text);
         return aiMessage;

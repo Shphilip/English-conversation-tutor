@@ -1,6 +1,6 @@
 //Connect microphone button to speech recognition function
 document.getElementById('micButton').addEventListener('click', function() {
-    speechRcognition();
+    speechRecognition();
 });
 
 /**
