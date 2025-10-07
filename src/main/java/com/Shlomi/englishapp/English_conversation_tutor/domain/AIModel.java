@@ -35,10 +35,34 @@ public class AiModel implements AiModelInterface{
             .post(body)
             .addHeader("Content-Type", "application/json") 
             .build();
-        
+    
         try {
             Response response = httpClient.newCall(request).execute();
-            String responseBody = response.body().string();
+            // String responseBody = response.body().string();
+            
+            // Mock response that matches Gemini API format - REMOVE WHEN API KEY IS FIXED!!!!!!!!!!!!!!!
+            String responseBody = "{\n" +
+                "  \"candidates\": [\n" +
+                "    {\n" +
+                "      \"content\": {\n" +
+                "        \"parts\": [\n" +
+                "          {\n" +
+                "            \"text\": \"TEST! TEST! TEST!\"\n" +
+                "          }\n" +
+                "        ],\n" +
+                "        \"role\": \"model\"\n" +
+                "      },\n" +
+                "      \"finishReason\": \"STOP\",\n" +
+                "      \"index\": 0\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"usageMetadata\": {\n" +
+                "    \"promptTokenCount\": 10,\n" +
+                "    \"candidatesTokenCount\": 50,\n" +
+                "    \"totalTokenCount\": 60\n" +
+                "  }\n" +
+                "}";
+            
             return gson.fromJson(responseBody, JsonObject.class);
 
         } catch (java.io.IOException e) {

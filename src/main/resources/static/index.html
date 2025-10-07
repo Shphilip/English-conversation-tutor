@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Popup login -->
+    <div id="loginPopup" class="popup">
+        <div class="popup-content">
+            <h2>Welcome to AI Conversation Tutor</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+
+                <button type="submit">Sign In</button>
+                <div id="errorMessage" style="color:red; display:none;">Please fill in all fields</div>
+            </form>
+        </div>
+    </div>
+
     <div class="container">
         <div class="avatar-container">
             <div class="avatar"></div>

@@ -81,10 +81,19 @@ function speakText(text) {
 }
 
 function postRequest(userText){
+    const username = sessionStorage.getItem("username");
+    const password = sessionStorage.getItem("password");
+    
+    console.log("Username:", username);
+    console.log("Password:", password);
+
     fetch("/api/conversation", {
         method: "POST",
         headers: {"Content-Type": "application/json"}, //application = General type (Not text or image), type/subtype
-        body: JSON.stringify({ message: userText }) //Convert text to JSON
+        body: JSON.stringify({ 
+            username: username,
+            password: password,
+            message: userText}) //Convert text to JSON
     })
     .then(res => res.json())
     .then(data => {

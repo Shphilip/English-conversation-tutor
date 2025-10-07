@@ -1,22 +1,26 @@
 package com.Shlomi.englishapp.English_conversation_tutor.entities;
 
 public class UserMessage implements MessageInterface{
-    private String massage;
-    private static Boolean isFirsMassage = true;
+    private String message;
+    private String conversationHistory;
 
     @Override
     public String getMessage() {
-        return this.massage;
+        return this.message;
     }
 
     @Override
-    public void setMessage(String massage) {
-        this.massage = massage;
-        isFirsMassage = false;
-    }
-    @Override
-    public boolean isFirstMassage(){
-        return isFirsMassage;
+    public String getConversationHistory() {
+        return conversationHistory;
     }
 
+    @Override
+    public void setConversationHistory(String conversationHistory) {
+        this.conversationHistory = conversationHistory;
+    }
+
+    @Override
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

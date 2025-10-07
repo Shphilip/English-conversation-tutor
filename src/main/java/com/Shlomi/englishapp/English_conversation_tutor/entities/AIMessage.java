@@ -2,7 +2,6 @@ package com.Shlomi.englishapp.English_conversation_tutor.entities;
 
 public class AIMessage implements MessageInterface{
     private String massage;
-    private static Boolean isFirsMassage = true;
 
     @Override
     public String getMessage() {
@@ -12,11 +11,14 @@ public class AIMessage implements MessageInterface{
     @Override
     public void setMessage(String massage) {
         this.massage = massage;
-        isFirsMassage = false;
     }
+    private String conversationHistory; //!!!!!!!!!!!!!!!!!!!!DO NOT NEED TO INITIALIZE IT!!!!!
     @Override
-    public boolean isFirstMassage(){
-        return isFirsMassage;
+    public String getConversationHistory() {
+        return conversationHistory;
+    }   
+    @Override
+    public void setConversationHistory(String conversationHistory) {
+        this.conversationHistory = conversationHistory;
     }
-
 }
