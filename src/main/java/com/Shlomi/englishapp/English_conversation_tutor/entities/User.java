@@ -16,9 +16,18 @@ public class User implements UserInterface {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String password;
-    private String HistoryConversationSummary;
     private String username;
-    
+    private String HistoryConversationSummary;
+    private String fullConversationHistory = ""; 
+
+    public String getFullConversationHistory() {
+        return fullConversationHistory;
+    }
+
+    public void setFullConversationHistory(String fullConversationHistory) {
+        this.fullConversationHistory += fullConversationHistory;
+    }
+
     public String getUsername() {
         return this.username;
     }
