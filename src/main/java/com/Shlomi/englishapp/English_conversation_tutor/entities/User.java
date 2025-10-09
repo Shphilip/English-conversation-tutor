@@ -1,10 +1,14 @@
 package com.Shlomi.englishapp.English_conversation_tutor.entities;
 
 import jakarta.persistence.GenerationType;
+// import com.Shlomi.englishapp.English_conversation_tutor.entities.UserInterface;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Lob;
 
 
 @Entity
@@ -17,7 +21,11 @@ public class User implements UserInterface {
     private Long id;
     private String password;
     private String username;
+    @Column(columnDefinition = "TEXT")
     private String HistoryConversationSummary;
+    
+    @Lob
+    @Column(columnDefinition = "LONGTEXT")
     private String fullConversationHistory = ""; 
 
     public String getFullConversationHistory() {

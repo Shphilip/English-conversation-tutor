@@ -72,7 +72,7 @@ public class ChatService implements ChatServiceInterface{
 
         if(user != null){ // User found, proceed with processing the message
             // Check if user wants to stop and summarize the conversation
-            if (messageText.equalsIgnoreCase("Stop Conversation")) {
+            if (messageText.equalsIgnoreCase("End session")) {
                 return handleConversationSummarization(user);
             }
             
