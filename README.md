@@ -44,19 +44,20 @@ A web-based English conversation practice application that enables continuous, n
   5. Persists updated user data  
 
 ### Domain Layer
-- **AiWrapper.java**  
-  - Purpose: Abstracts Gemini API communication  
-  - Functionality:
-    - Builds JSON requests according to Gemini API format  
-    - Includes conversation history context in prompts  
-    - Parses AI responses and converts to internal message format  
-  - AI Prompt Template: Configures the AI model as an English teacher with natural conversation guidelines  
 
-- **AiModel.java**  
-  - Purpose: HTTP client for Gemini API  
-  - Functionality:
-    - Handles direct communication with Google's Generative AI API  
-    - Manages API authentication and request/response processing  
+#### AiWrapper.java
+- **Purpose**: Abstracts Gemini API communication  
+- **Functionality**:
+  - Builds JSON requests according to Gemini API format  
+  - Includes conversation history context in prompts  
+  - Parses AI responses and converts to internal message format  
+- **AI Prompt Template**: Configures the AI model as an English teacher with natural conversation guidelines  
+
+#### AiModel.java
+- **Purpose**: HTTP client for Gemini API  
+- **Functionality**:
+  - Handles direct communication with Google's Generative AI API  
+  - Manages API authentication and request/response processing  
 
 ---
 
@@ -84,36 +85,135 @@ A web-based English conversation practice application that enables continuous, n
 
 ---
 
-## User & Message Models
+## Data Models
 
 ### User Model
-**User (implements UserInterface)**:
-- **Identifier**: Long id (auto-generated primary key)  
-- **Username**: String username (user login identifier)  
-- **Password**: String password (user authentication)  
-- **Summary of previous conversation history**: String HistoryConversationSummary (stored as TEXT in database)  
-- **Current conversation database**: String fullConversationHistory (stored as LONGTEXT, contains current session messages)  
+**User** (implements `UserInterface`):
+- **Identifier**: `Long id` (auto-generated primary key)  
+- **Username**: `String username` (user login identifier)  
+- **Password**: `String password` (user authentication)  
+- **Summary of previous conversation history**: `String HistoryConversationSummary` (stored as TEXT in database)  
+- **Current conversation database**: `String fullConversationHistory` (stored as LONGTEXT, contains current session messages)  
 
-### Message Model
-**UserMessage (implements MessageInterface)**:
-- **Current message received**: String message (user's input text)  
-- **Conversation context**: String conversationHistory (previous conversation summary)  
+### Message Models
 
-**AIMessage (implements MessageInterface)**:
-- **AI response message**: String message (AI's response text)  
-- **Conversation context**: String conversationHistory (conversation context)  
+#### UserMessage (implements `MessageInterface`)
+- **Current message received**: `String message` (user's input text)  
+- **Conversation context**: `String conversationHistory` (previous conversation summary)  
 
-### UserMessageRequest (implements handleRequestInterface)
-- **Authentication fields**: String username, String password  
-- **Message content**: String message (user's current message)  
+#### AIMessage (implements `MessageInterface`)
+- **AI response message**: `String message` (AI's response text)  
+- **Conversation context**: `String conversationHistory` (conversation context)  
 
-### AI Model
-**AiWrapper (implements WrapperInterface)**:
+#### UserMessageRequest (implements `handleRequestInterface`)
+- **Authentication fields**: `String username`, `String password`  
+- **Message content**: `String message` (user's current message)  
+
+### AI Integration Models
+
+#### AiWrapper (implements `WrapperInterface`)
 - **HTTP client**: Sends requests to Gemini AI API  
 - **Request processing**: Formats user message and conversation history for AI  
-- **Response parsing**: Extracts AI response from JSON and returns as MessageInterface  
+- **Response parsing**: Extracts AI response from JSON and returns as `MessageInterface`  
 
-**AiModel (implements AiModelInterface)**:
+#### AiModel (implements `AiModelInterface`)
 - **Request builder**: Creates HTTP requests with proper headers and JSON payload  
 - **API communication**: Handles the actual HTTP communication with external AI service  
-- **Authentication**: Uses GEMINI_API_KEY environment variable  
+- **Authentication**: Uses `GEMINI_API_KEY` environment variable  
+
+---
+
+## Project Structure
+
+```
+English-conversation-tutor/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/Shlomi/englishapp/English_conversation_tutor/
+│   │   │       ├── EnglishConversationTutorApplication.java
+│   │   │       ├── controller/
+│   │   │       │   ├── Controller.java
+│   │   │       │   └── ControllerInterface.java
+│   │   │       ├── domain/
+│   │   │       │   ├── AiModel.java
+│   │   │       │   ├── AiModelInterface.java
+│   │   │       │   ├── AiWrapper.java
+│   │   │       │   └── WrapperInterface.java
+│   │   │       ├── entities/
+│   │   │       │   ├── AIMessage.java
+│   │   │       │   ├── handleRequestInterface.java
+│   │   │       │   ├── MessageInterface.java
+│   │   │       │   ├── User.java
+│   │   │       │   ├── UserInterface.java
+│   │   │       │   └── UserMessage.java
+│   │   │       └── service/
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── static/
+│   │           ├── app.js
+│   │           ├── index.html
+│   │           ├── script.js
+│   │           └── styles.css
+│   └── test/
+├── data/
+│   └── english_tutor_db.mv.db
+├── pom.xml
+└── README.md
+```
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Java 17 or higher
+- Maven 3.6 or higher
+- Google Gemini API key
+
+### Installation
+1. Clone the repository
+2. Set the `GEMINI_API_KEY` environment variable with your Google Gemini API key
+3. Run the application:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
+4. Open your browser and navigate to `http://localhost:8080`
+
+### Usage
+1. **Login**: Enter your username and password in the login modal
+2. **Start Conversation**: Click the microphone button to begin voice input
+3. **Practice**: Speak naturally - the AI will respond as an English teacher
+4. **End Session**: Say "End session" to terminate and save your conversation history
+
+---
+
+## API Endpoints
+
+### POST `/api/conversation`
+- **Description**: Send user message and receive AI response
+- **Request Body**:
+  ```json
+  {
+    "username": "string",
+    "password": "string", 
+    "message": "string"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "string",
+    "conversationHistory": "string"
+  }
+  ```
+
+---
+
+## Configuration
+
+### Environment Variables
+- `GEMINI_API_KEY`: Your Google Gemini API key for AI integration
+
+### Application Properties
+See `src/main/resources/application.properties` for database and server configuration.
