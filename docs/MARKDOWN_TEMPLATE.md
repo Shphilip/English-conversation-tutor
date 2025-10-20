@@ -1,6 +1,9 @@
 # English Conversation Tutor
 
-![CV Project Diagram](docs/CV_Project_diagram.drawio.png)
+<p align="center">
+  <img src="CV_Project_diagram.drawio.png" alt="CV Project Diagram" width="80%">
+</p>
+
 
 ## Overview
 A web-based English conversation practice application that enables continuous, natural conversations with an AI-powered English tutor. The application features speech recognition, text-to-speech capabilities, and session management for personalized learning experiences.
