@@ -20,8 +20,8 @@ public class ChatService implements ChatServiceInterface{
         this.userRepository = userRepository;
 
         User newUser = new User();
-        newUser.setUsername("s");
-        newUser.setPassword("s");
+        newUser.setUsername("Shlomi");
+        newUser.setPassword("Shlomi");
         newUser.setHistoryConversationSummary("My name is Shlomi"); // Initialize with empty conversation history
         
         // Save to database

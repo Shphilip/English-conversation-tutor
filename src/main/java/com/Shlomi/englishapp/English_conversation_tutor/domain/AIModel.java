@@ -47,7 +47,7 @@ public class AiModel implements AiModelInterface{
                 "      \"content\": {\n" +
                 "        \"parts\": [\n" +
                 "          {\n" +
-                "            \"text\": \"TEST! TEST! TEST!\"\n" +
+                "            \"text\": \"I'm great, thank you! How about you?\"\n" +
                 "          }\n" +
                 "        ],\n" +
                 "        \"role\": \"model\"\n" +
