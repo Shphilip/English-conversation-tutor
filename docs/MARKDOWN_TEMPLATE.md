@@ -1,7 +1,8 @@
 # English Conversation Tutor
 
-<!-- If the image file lives in `docs/`, the relative path below is correct. If it lives in the repo root, change to `../CV_Project_diagram.drawio.png` -->
-<p align="center">![CV Project Diagram](CV_Project_diagram.drawio.png)</p>
+<p align="center">
+  <img src="CV_Project_diagram.drawio.png" alt="CV Project Diagram" width="80%">
+</p>
 
 ## Overview
 A web-based English conversation practice application that enables continuous, natural conversations with an AI-powered English tutor. The application features speech recognition, text-to-speech capabilities, and session management for personalized learning experiences.
